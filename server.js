@@ -1,23 +1,29 @@
-// Import required modules
+/*********************************************************************************
+*  WEB422 – Assignment 1
+*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  
+*  No part of this assignment has been copied manually or electronically from any other source
+*  (including web sites) or distributed to other students.
+* 
+*  Name: ________________kamelin pajang______ Student ID: 186252219______________ Date: 2025/01/21________________
+*  Vercel Link: _____https://labweb422-lfvs-iwykxj5up-kamelin22yahoocoms-projects.vercel.app/ also for using specific pages https://labweb422-lfvs-iwykxj5up-kamelin22yahoocoms-projects.vercel.app/api/movies?page=2&perPage=10__________________________________________________________
+*
+********************************************************************************/ 
+
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const MoviesDB = require('./modules/moviesDB.js');
 
-// Initialize the Express application
 const app = express();
 
-// Serve static files
 app.use(express.static(__dirname + '/public'));
 
 const db = new MoviesDB();
 const HTTP_PORT = process.env.PORT || 8080;
 
-// Middleware
-app.use(cors()); // Enable CORS
-app.use(express.json()); // Parse JSON bodies
+app.use(cors()); 
+app.use(express.json()); 
 
-// Routes
 app.get('/', (req, res) => {
     res.json({ message: "API Listening" });
 });
