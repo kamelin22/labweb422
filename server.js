@@ -13,20 +13,16 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const MoviesDB = require('./modules/moviesDB.js');
-const path = require('path'); // Add this line
 
 const app = express();
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/public'));
+
 const db = new MoviesDB();
 const HTTP_PORT = process.env.PORT || 8080;
 
 app.use(cors()); 
 app.use(express.json()); 
-// Serve the frontend (index.html) for the root route
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 app.get('/', (req, res) => {
     res.json({ message: "API Listening" });
