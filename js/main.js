@@ -40,20 +40,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to load movie data from the API
 function loadMovieData(title = null) {
-    // Ensure currentPage and perPage are numbers
-    let page = currentPage || 1;  // Default to 1 if currentPage is undefined
-    let itemsPerPage = perPage || 10;  // Default to 10 if perPage is undefined
-
-    let url = `${baseUrl}?page=${page}&perPage=${itemsPerPage}`;
+    let url = `${baseUrl}?page=${currentPage}&perPage=${perPage}`;
     if (title) {
         url += `&title=${encodeURIComponent(title)}`;
-        currentPage = 1;
+        currentPage = 1; // Reset to first page on new search
         document.querySelector('.pagination').classList.add('d-none');
     } else {
         document.querySelector('.pagination').classList.remove('d-none');
     }
-
-    console.log(`Fetching data from URL: ${url}`);  // Log the URL for debugging
 
     fetch(url)
         .then(response => response.json())
@@ -63,7 +57,6 @@ function loadMovieData(title = null) {
         })
         .catch(error => console.error('Error loading the data:', error));
 }
-
 
 // Function to update the table with movie data
 function updateTable(movies) {
