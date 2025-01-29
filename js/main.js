@@ -1,5 +1,5 @@
 // Set up the base URL for your deployed API
-const baseUrl = 'https://labweb422-h3w4-oqjjsul3n-kamelin22yahoocoms-projects.vercel.app/api/movies';
+const baseUrl = 'https://labweb422-h3w4-oqjjsul3n-kamelin22yahoocoms-projects.vercel.app/api/movies?page=2&perPage=10https://labweb422-h3w4-oqjjsul3n-kamelin22yahoocoms-projects.vercel.app/api/movies';
 
 // Global variables to keep track of the current page and items per page
 let currentPage = 1;
