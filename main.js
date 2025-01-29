@@ -19,26 +19,35 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error loading movies:', error));
     }
     
-
+    function loadMovieData(title = null) {
+        // Construct the URL with proper query parameters
+        const apiUrl = `https://labweb422-cyjx-nnz9vuaqg-kamelin22yahoocoms-projects.vercel.app/api/movies?page=${currentPage}&perPage=${perPage}` + (title ? `&title=${encodeURIComponent(title)}` : '');
+    
+        fetch(apiUrl)
+            .then(response => response.json())  // Converts API response to JSON
+            .then(data => {
+                updateTable(data);  // Calls function to display movies in the table
+                updatePaginationControls();  // Updates pagination
+            })
+            .catch(error => console.error('Error loading movies:', error));
+    }
+    
     function updateTable(movies) {
         const tableBody = document.getElementById('moviesTable').getElementsByTagName('tbody')[0];
-        tableBody.innerHTML = '';
+        let rows = '';
         movies.forEach(movie => {
-            let row = `<tr data-id="${movie._id}">
-                            <td>${movie.year}</td>
-                            <td>${movie.title}</td>
-                            <td>${movie.plot || 'N/A'}</td>
-                            <td>${movie.rating || 'N/A'}</td>
-                            <td>${movie.runTime || 'N/A'}</td>
-                       </tr>`;
-            tableBody.innerHTML += row;
+            rows += `<tr data-id="${movie._id}">
+                        <td>${movie.year}</td>
+                        <td>${movie.title}</td>
+                        <td>${movie.plot || 'N/A'}</td>
+                        <td>${movie.rating || 'N/A'}</td>
+                        <td>${movie.runTime || 'N/A'}</td>
+                    </tr>`;
         });
-    }
-
-    function updatePaginationControls() {
+        tableBody.innerHTML = rows;
         document.getElementById('current-page').textContent = currentPage;
     }
-
+    
     document.getElementById('previous-page').addEventListener('click', (e) => {
         e.preventDefault();
         if (currentPage > 1) {
