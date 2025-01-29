@@ -7,15 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const perPage = 10;
 
     function loadMovieData(title = null) {
-        const apiUrl = `/api/movies?page=${currentPage}&perPage=${perPage}` + (title ? `&title=${encodeURIComponent(title)}` : '');
+        const apiUrl = `https://labweb422-cyjx-nnz9vuaqg-kamelin22yahoocoms-projects.vercel.app/api/movies?page=${currentPage}&perPage=${perPage}`
+            + (title ? `&title=${encodeURIComponent(title)}` : '');
+        
         fetch(apiUrl)
-            .then(response => response.json())
+            .then(response => response.json())  // Converts API response to JSON
             .then(data => {
-                updateTable(data);
-                updatePaginationControls();
+                updateTable(data);  // Calls function to display movies in the table
+                updatePaginationControls();  // Updates pagination
             })
             .catch(error => console.error('Error loading movies:', error));
     }
+    
 
     function updateTable(movies) {
         const tableBody = document.getElementById('moviesTable').getElementsByTagName('tbody')[0];
