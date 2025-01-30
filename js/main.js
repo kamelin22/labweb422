@@ -1,5 +1,5 @@
 // Set up the base URL for your deployed API
-const baseUrl = 'https://labweb422-h3w4-oqjjsul3n-kamelin22yahoocoms-projects.vercel.app';
+const baseUrl = 'https://my-7wiioi-kamelin22yahoocoms-projects.vercel.app/api/movies';
 
 // Global variables to keep track of the current page and items per page
 let currentPage = 1;
@@ -52,6 +52,7 @@ function loadMovieData(title = null) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            console.log("API Response:", data); // Debugging line
             updateTable(data);
             document.getElementById('current-page').textContent = currentPage;
         })
