@@ -10,11 +10,11 @@
       "use": "@vercel/static"
     },
     {
-      "src": "css/main.css",
+      "src": "/css/main.css",
       "use": "@vercel/static"
     },
     {
-      "src": "js/main.js",
+      "src": "/js/main.js",
       "use": "@vercel/static"
     }
   ],
@@ -24,8 +24,9 @@
       "dest": "server.js"
     },
     {
-      "src": "/(.*)",
+      "src": "/",
       "dest": "index.html"
     }
+    
   ]
 }
