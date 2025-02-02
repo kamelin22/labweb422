@@ -1,0 +1,4 @@
+/* main.css */
+#moviesTable tr:hover {
+    cursor: pointer;
+}
