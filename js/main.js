@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to load movie data from the API
 function loadMovieData(title = null) {
     let url = `${baseUrl}?page=${currentPage}&perPage=${perPage}`;
+    console.log(url)
     if (title) {
         url += `&title=${encodeURIComponent(title)}`;
         currentPage = 1; // Reset to first page on new search
